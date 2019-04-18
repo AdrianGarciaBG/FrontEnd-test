@@ -2,8 +2,6 @@
 document.getElementById("btn-search").addEventListener("click", getData);
 
 
-
-
 function getData() {
     
     document.getElementById("info").style.display = "none";
@@ -14,11 +12,9 @@ function getData() {
     fetch(usersInfo)
     .then(response => response.json())
     .then(data => {
-        
         document.getElementById("inputName").value = ""
        
         if(data.message){
-
             document.getElementById("error").style.display = "flex";
         }
         else{
@@ -27,12 +23,9 @@ function getData() {
         getUserRepos(userName)
         };
       
-       
-       
     })
     .catch(error => console.error(error));
 
-    
 }
 
 function getUserRepos(userName){
@@ -66,8 +59,6 @@ document.getElementById("fullname").innerHTML = data.name;
 document.getElementById("userBio").innerHTML = data.bio;
 
 }
-
-
 
 function showUserRepos(data){
 
