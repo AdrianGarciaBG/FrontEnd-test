@@ -1,38 +1,63 @@
 
 document.getElementById("btn-search").addEventListener("click", getData);
-document.getElementById("info").style.display = "none";
-document.getElementById("error").style.display = "none"
+
 
 
 
 function getData() {
     
-    const userName = document.getElementById("inputName").value;
+    document.getElementById("info").style.display = "none";
+    let userName = document.getElementById("inputName").value;
     
     const usersInfo = `https://api.github.com/users/${userName}`;
 
     fetch(usersInfo)
     .then(response => response.json())
     .then(data => {
-        getUserData(data);
-        console.log(data);
+        
+        document.getElementById("inputName").value = ""
+       
+        if(data.message){
+
+            document.getElementById("error").style.display = "flex";
+        }
+        else{
+            document.getElementById("error").style.display = "none";
+        showUserData(data);
+        getUserRepos(userName)
+        };
+      
+       
+       
     })
     .catch(error => console.error(error));
 
     
-    
+}
+
+function getUserRepos(userName){
+
     const usersRepo = `https://api.github.com/users/${userName}/repos`;
 
     fetch(usersRepo)
     .then(response => response.json())
     .then(data => {
-        getUserRepos(data);
-        console.log(data)
+        if(data.length == 0){
+
+            console.log("NO REPO")
+        }
+        else{
+            console.log(data)
+            document.getElementById("error").style.display = "none";
+        showUserRepos(data);
+        };
+       
     })
     .catch(error => console.error(error));
 
+}
 
-function getUserData(data){
+function showUserData(data){
 
 document.getElementById("info").style.display = "block";
 document.getElementById("profilePic").src = data.avatar_url;
@@ -40,25 +65,11 @@ document.getElementById("username").innerHTML = "@" + data.login;
 document.getElementById("fullname").innerHTML = data.name;
 document.getElementById("userBio").innerHTML = data.bio;
 
-};
+}
 
 
 
-function getUserRepos(data){
-
-//     const repoTable = document.getElementById("repoTable");
-
-//     const tdTable = document.createElement('td');
-
-//     data.map(repoName => {
-
-//     const trTable = document.createElement('tr');
-
-//     trTable.innerHTML = `${repoName.name}`
-
-//     tdTable.append(trTable);
-// });
-//     repoTable.append(tdTable);
+function showUserRepos(data){
 
     const repoTable = document.getElementById("repoTable");
 
@@ -66,19 +77,18 @@ function getUserRepos(data){
 
     let template = "";
 
-    data.map( repoName => {
-         template += `
-            <tr>
-                <td>${repoName.name}</td>
-                <td><img src="img/code-fork-icon.png" class="fork">${repoName.forks_count}</td>
-                <td><img src="img/star2.png" class="star">${repoName.stargazers_count}</td>
-            </tr>
-            
-         `;
+    data.map(repoName => {
+         
+        template += `
+            <div class="repo">
+                <h3 class="repo-title">${repoName.name}</h3>
+                <div class="icons">
+                <img src="img/code-fork-icon.png" class="fork">${repoName.forks_count}
+                <img src="img/star2.png" class="star">${repoName.stargazers_count}
+                </div>
+            </div>`;
     });
 
     repoTable.innerHTML = template;
 }
-
-};
 

@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Fira+Sans');
 
-
 /* body */
 
 body{
@@ -23,7 +22,7 @@ body{
 
     margin-top: 30px;
     width: 500px;
-    height: 100px;
+    /* height: 100px; */
     border-radius: 5px;
     background-color:white;
     box-shadow: 8px 8px 10px #9C9FA3;
@@ -53,7 +52,6 @@ body{
     border: 1px solid #D5D5D5;
     font-size: 13px;
     
-
 }
 
 /* input-search*/
@@ -79,22 +77,18 @@ body{
 }
 
 
-td:first-child, th:first-child {
-    border-left: none;
-    border-right: none;
-    border-top: none;
+tr td {
+    border-bottom: 2px solid black;
+    padding: 20px;
 
-   }
-
-table{
-
-    border-collapse: collapse;
 }
+
 
 .table{
     
     font-family: fira sans;
     font-weight: bold;
+    width: 450px;
 }
 
 #profilePic{
@@ -118,7 +112,6 @@ table{
 
     margin-top: 20px;
     margin-left: 25px;
-
 }
 
 /* box of usr information */
@@ -129,8 +122,8 @@ table{
     height: auto;
     background-color: white;
     border-radius: 5px;
-    box-shadow: 8px 8px 10px #9C9FA3;
     margin-top: -20px;
+    display: none;
 
 }
 
@@ -147,6 +140,8 @@ table{
 
     width: 15px;
     height: 15px;
+    margin-right: 5px;
+    margin-left: 5px;
 }
 
 /* error box */
@@ -156,9 +151,57 @@ table{
     color: red;
     width: 370px;
     height: 50px;
-    border: 3px, solid, #CFB2B2;
+    border: 1px solid #CFB2B2;
+    border-radius: 5px;
     background-color: #F9DEDE;
     text-align: center;
+    font-family: fira sans;
+    margin-left: 70px;
+    margin-bottom: 15px;
+    display: none;
+    justify-content: center;
 
+    
 }
 
+.repo {
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 0.5px solid rgb(218, 218, 218);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.repo-title{
+    
+    margin: 0 0 0 20px;
+}
+
+.icons {
+    
+    margin-right: 20px;
+}
+
+.underline{
+
+    border-bottom: 2px solid black;
+    padding-bottom: 10px;
+}
+
+.emptyRepos{
+
+    color: yellow;
+    width: 370px;
+    height: 50px;
+    border: 1px solid #FFFF33;
+    border-radius: 5px;
+    background-color: #F8F79E;
+    text-align: center;
+    font-family: fira sans;
+    margin-left: 70px;
+    margin-bottom: 15px;
+    display: none;
+    justify-content: center;
+}
